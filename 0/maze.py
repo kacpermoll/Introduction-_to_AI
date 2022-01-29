@@ -28,6 +28,7 @@ class StackFrontier():
 
     def empty(self):
         return len(self.frontier) == 0
+
     # removing the last node form the frontier node
 
     def remove(self):

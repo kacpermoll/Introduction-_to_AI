@@ -1,5 +1,6 @@
 import csv
 import sys
+from tracemalloc import start
 
 from util import Node, StackFrontier, QueueFrontier
 
@@ -7,15 +8,15 @@ from util import Node, StackFrontier, QueueFrontier
 # names = {"id" : "name"}
 names = {}
 
-# nested dictionery with person's id as a key
-# of each dicitonary, where are following keys: "name", "birth", "movies"
+# nested dictionary with person's id as a key of each dicitonary,
+# where are following keys: "name", "birth", "movies"
 # people = {(id):   {"name": (name), "birth": (birth), "movies": (set of movie's ids which the person starred in)},
 #           (id):   {"name": (...), "birth": (...), "movies": (...)},
 #            ...
 #           }
 people = {}
 
-# nested dictionery with movie's id as a key
+# nested dictionary with movie's id as a key
 # movies = {(id): {"title":(title), "year" :(year), "stars":(set of person's ids who starred in this movie)}}
 movies = {}
 
@@ -100,7 +101,35 @@ def shortest_path(source, target):
     """
 
     # TODO
-    raise NotImplementedError
+    start = Node(state=source, parent=None, action=None)
+    frontier = QueueFrontier()
+    frontier.add(start)
+
+    explored = set()
+
+    while True:
+
+        # if nothing left in frontier, then no path
+        if frontier.empty():
+            raise Exception("There is no solution!")
+
+        node = frontier.remove()
+        explored.add(node)
+
+        # adding neighbours to the frontier
+        for movie_id, person_id in neighbors_for_person(node.state):
+            if not frontier.contains_state(person_id) and person_id not in explored:
+                child = Node(state=person_id, parent=node, action=movie_id)
+
+                if child.state == target:
+                    list = []
+                    while child.parent is not None:
+                        list.append((child.action, child.state))
+                        child = child.parent
+                    list.reverse()
+                    return list
+
+                frontier.add(child)
 
 
 def person_id_for_name(name):
