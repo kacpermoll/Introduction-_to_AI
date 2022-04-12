@@ -1,7 +1,9 @@
 """
 Tic Tac Toe Player
 """
+from copy import deepcopy
 from queue import Empty
+from random import choice
 import numpy as np
 import math
 
@@ -65,10 +67,11 @@ def result(board, action):
         raise IndexError()
 
     #actionArray = board
-    actionArray = [row[:] for row in board]
-    actionArray[x][y] = player(board)
-
-    return actionArray
+    actionBoard = deepcopy(board)
+    move = player(actionBoard)
+    actionBoard[action[0]][action[1]] = move
+    
+    return actionBoard
 
 
 def winner(board):
@@ -126,21 +129,23 @@ def minimax(board):
     if terminal(board):
         return None
 
+    choice = None
     if player(board) == X:
-        arr = []
+        v = -2
         for action in actions(board):
-            arr.append([min_value(result(board, action)),action])
-        
-        return sorted(arr, key=lambda x: x[0], reverse=True)[0][1]
-    else:
-        arr = []
+            a = min_value(result(board, action))
+            if a > v:
+                v = a
+                choice = action
+    elif player(board) == O:
+        v = 2
         for action in actions(board):
-            arr.append([max_value(result(board, action)),action])
-        
-        return sorted(arr, key=lambda x: x[0])[0][1]
-
-    raise NotImplementedError
-
+            a = max_value(result(board, action))
+            if a < v:
+                v = a
+                choice = action
+    
+    return choice
 
 def max_value(board):
     if terminal(board):
