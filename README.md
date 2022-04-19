@@ -1,6 +1,7 @@
 # My first steps with AI
 
 I follow the course CS50’s Introduction to Artificial Intelligence with Python
+
 The course is composed of 7 lectures, with at least one project to be completed after each lecture
 
 List of all lectures (_with names of projects_):
@@ -22,10 +23,10 @@ List of all lectures (_with names of projects_):
 
 Project name       | Directory in my repo
 ------------- | -------------
-Degrees  | 0/
-Tic-Tac-Toe  | 0/
-Knights | 1/
-Minesweeper | 1/
+Degrees  | 0/degrees
+Tic-Tac-Toe  | 0/tictactoe
+Knights | 1/knights
+Minesweeper | 1/minesweeper
 PageRank | coming soon
 Heredity | coming soon
 Crossword | coming soon
