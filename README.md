@@ -22,18 +22,17 @@ List of all lectures (_with names of projects_):
 
 Project name       | Directory in my repo
 ------------- | -------------
-
 Degrees  | 0/
-Tic-Tac-Toe  | Content Cell
-Knights |
-Minesweeper |
-PageRank |
-Heredity |
-Crossword |
-Shopping |
-Nim |
-Traffic |
-Parser |
-Questions |
+Tic-Tac-Toe  | 0/
+Knights | 1/
+Minesweeper | 1/
+PageRank | coming soon
+Heredity | coming soon
+Crossword | coming soon
+Shopping | coming soon
+Nim | coming soon
+Traffic | coming soon
+Parser | coming soon
+Questions | coming soon
 
 
